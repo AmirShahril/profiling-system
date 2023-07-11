@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Imports\DataImport;
+use App\Imports\DataMarkahImport;
+use App\Models\DataMarkah;
 use App\Models\User;
 use App\Models\UserData;
-use App\Models\Markah;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -19,17 +20,30 @@ class SearchController extends Controller
     public function import(Request $request)
     {
         $request->validate([
-            'file' => 'required|mimes:xlsx,xls'
+            'file' => 'required|mimes:xlsx,xls,csv'
         ]);
     
         $file = $request->file('file');
-        $columnIndex = 4; // Modify this with the desired column index
     
-        Excel::import(new DataImport($columnIndex), $file);
+        Excel::import(new DataImport(), $file);
     
-        return redirect()->route('home')->with('success', 'Data imported successfully!');
+        return redirect()->route('home')->with('success', 'Data User berjaya di import!');
+    }
+
+    public function importMarkah(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:xlsx,xls,csv'
+        ]);
+    
+        $file = $request->file('file');
+    
+        Excel::import(new DataMarkahImport(), $file);
+    
+        return redirect()->route('home')->with('success', 'Data Pendorong berjaya di import!');
     }
     
+
     public function search(Request $request)
     {
         $query = $request->input('query');
@@ -46,10 +60,10 @@ class SearchController extends Controller
         return view('profile', compact('profiles', 'id'));
     }
 
-    public function markah($id)
+    public function result($id)
     {
-        $markahs = Markah::where('id', $id)->get();
+        $results = DataMarkah::where('user_data_id', $id)->get();
 
-        return view('markah', compact('profiles', 'id'));
+        return view('result', compact('results', 'id'));
     }
 }

@@ -10,9 +10,10 @@ class UserData extends Model
 {
     use HasFactory;
 
+    protected $table = 'user_data';
+    
     protected $fillable = [
-        'no_tentera',
-        'pangkat',		
+        'no_tentera',	
         'nama',	
         'kompeni',	
         'tarikh_lahir',	
@@ -46,4 +47,9 @@ class UserData extends Model
     protected $casts = [
         'tarikh_lahir'  => 'date:Y-m-d',
     ];
+    
+    public function result()
+    {
+        return $this->hasOne(DataMarkah::class, 'user_data_id');
+    }
 }

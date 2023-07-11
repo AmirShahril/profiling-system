@@ -1,11 +1,20 @@
 
 @extends('layouts.app')
+<style>
+            body 
+            {
+            background-image: url("{{url('/img/Take Cover.jpg')}}");
+            background-position: auto;
+            background-repeat: no-repeat;
+            background-size: cover;
+            }
+</style>
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Data Pendorong') }}</div>
+                <div class="card-header">{{ __('Data Ujian Pendorong') }}</div>
 
                 <div class="card-body p-4">
                     @if (session('status'))
@@ -19,7 +28,7 @@
                     @else
                         <div>
                             @foreach ($results as $result)
-                                <h3>Carian No Tentera: {{ $result->user->no_tentera }}</h3>
+                                <h3>Nombor Index: {{ $result->user_data_id }}</h3>
 
                                 <table class="table table-bordered mt-4">
                                     <tr>

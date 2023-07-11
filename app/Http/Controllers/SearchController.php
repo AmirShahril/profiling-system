@@ -48,10 +48,12 @@ class SearchController extends Controller
     {
         $query = $request->input('query');
 
-        $profiles = UserData::where('no_tentera', 'LIKE', '%' . $query . '%')->get();
-
+        $profiles = UserData::where('no_tentera', 'LIKE', '%' . $query . '%') ->orwhere('nama', 'LIKE', '%' . $query . '%')->get();
+        // $profiles = UserData::where('nama', 'LIKE', '%' . $query . '%')->get();
+      
         return view('home', compact('profiles', 'query'));
     }
+
 
     public function profile($id)
     {

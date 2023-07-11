@@ -1,5 +1,14 @@
 
 @extends('layouts.app')
+<style>
+            body 
+            {
+            background-image: url("{{url('/img/Resting.jpg')}}");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            }
+</style>
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -13,7 +22,7 @@
                             {{ session('status') }}
                         </div>
                     @endif
-                    <div class="mb-5">
+                    <!-- <div class="mb-5">
                         <h3>Import Data</h3>
                         @if(session('success'))
                             <div class="alert alert-success alert-dismissible" style="width:100%;">
@@ -52,19 +61,21 @@
                             </div>
                         </form>
                         <p style="font-style: italic; margin-left: 10px; margin-top: -10px; color: grey;">Sila sahkan bahawa fail dan formatnya adalah betul.</p>
-                    </div>
+                    </div> -->
+
+                    
                     <div class="mb-5">
                         <h3>Carian Profil</h3>
                         <form action="{{ route('search') }}" method="GET">
                             <div class="input-group mb-3">
-                                <input type="text" class="form-control" name="query" value="{{ $query ?? '' }}" placeholder="Carian mengikut No Tentera">
+                                <input type="text" class="form-control" name="query" value="{{ $query ?? '' }}" placeholder="Carian mengikut No Tentera/Nama">
                                 <button type="submit" class="input-group-append btn btn-secondary">
                                     Cari
                                 </button>
                             </div>
                         </form>
                     </div>
-                    
+                   
                     <div style="width: 100%">
                         @if(isset($profiles))
                             <table class="table table-bordered">
@@ -75,6 +86,7 @@
                                         <th>Tarikh Lahir</th>
                                         <th>No Ic Awam</th>
                                         <th>Profil</th>
+                                        <th>Markah</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -85,8 +97,10 @@
                                             <td>{{ $profile->tarikh_lahir->format('d/m/Y') }}</td>
                                             <td>{{ $profile->no_ic_awam }}</td>
                                             <td>
-                                                <a href="{{ route('profile', ['id' => $profile->id]) }}"><i class="bi bi-person-circle" style="font-size: 25px; margin-left: 20px; margin-right: 5px;"></i></a>
-                                                <a href="{{ route('result', ['id' => $profile->id]) }}"><i class="bi bi-percent" style="font-size: 25px; color:green;"></i></a>
+                                                <a href="{{ route('profile', ['id' => $profile->id]) }}"><i class="bi bi-person-circle" style="font-size: 25px; margin-left: 5px; margin-right: 5px;"></i></a>
+                                            </td>
+                                            <td>
+                                                <a href="{{ route('result', ['id' => $profile->id]) }}"><i class="bi bi-percent" style="font-size: 25px; color:green; margin-left: 5px; margin-right: 5px;"></i></a>
                                             </td>
                                         </tr>
                                         @empty
@@ -98,6 +112,18 @@
                             </table>
                         @endif
                     </div>
+
+                    <div>
+                        <a href="{{ 'https://phoenix.pages.dev/p/carian' }}">
+                        <button type="submit" class="input-group-append btn btn-secondary">
+                            Dashboard 1
+                        </button></a>
+                        <a href="{{ 'https://meta.analitik.my/public/dashboard/ee9eded7-fc40-4de8-86fa-6e86149ee3a1' }}">
+                        <button type="submit" class="input-group-append btn btn-secondary">
+                            Dashboard 2
+                        </button></a>
+                    </div>
+                    
                 </div>
             </div>
         </div>

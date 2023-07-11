@@ -3,11 +3,21 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
+    <style>
+            body 
+            {
+            background-image: url("{{url('/img/Orders.jpg')}}");
+            background-position: auto;
+            background-repeat: no-repeat;
+            background-size: cover;
+            }
+    </style>
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Profile') }}</div>
 
-                <div class="card-body p-4">
+                <div class="card-body p-4">          
+
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}

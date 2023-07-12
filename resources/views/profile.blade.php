@@ -29,13 +29,16 @@
                     @else
                         <div>
                             @foreach ($profiles as $profile)
-                                <h3>Carian No Tentera: {{ $profile->no_tentera }}</h3>
+                                <h3>Nombor Tentera: {{ $profile->no_tentera }}</h3>
+                        
+                                <!-- <img src="{{url('img/3017083.png')}}" alt="Image" style="width: 40px; height: 40px; margin-right: 5px; margin-top: -10px;"/> -->
       
                                 <table class="table table-bordered mt-4">
                                     <tr>
                                         <td><strong>Nama: </strong></td>
                                         <td colspan="5">{{ $profile->nama ?? '-' }}</td>
                                     </tr>
+                                    
                                     <tr>
                                         <td><strong>No IC Awam: </strong></td>
                                         <td colspan="2">{{ $profile->no_ic_awam ?? '-' }}</td>
@@ -142,7 +145,7 @@
                                     </tr>
 
                                 </table>
-                                <hr>
+                                
                             @endforeach
                         </div>
                     @endif
